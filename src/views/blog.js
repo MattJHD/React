@@ -2,13 +2,13 @@ import React, {Component} from 'react';
 import Header from '../views/header.js';
 import Footer from '../views/footer.js';
 
-
 //helper functions
-var h =  {
-  rando : function(arr) {
+/*function h() {
+  function rando(arr) {
     return arr[Math.floor(Math.random() * arr.length)];
-  },
-  getTime : function() {
+  }
+
+  function getTime() {
       var month = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
       var d = new Date();
       var mon = month[d.getMonth()];
@@ -17,29 +17,32 @@ var h =  {
       var dateAll = mon + " " + day + ", " + year;
     
       return dateAll;
-  },
-  getTaggedName : function() {
+  }
+
+  function getTaggedName() {
     var adjectives = ['trusted', 'secure', 'hot', 'new', 'interesting', 'best practice', 'exciting'];
     
     var nouns = ['es6', 'browserify', 'webpack', 'gulp', 'reactDOM', 'devTools'];
     
     return this.rando(adjectives) + ' ' + this.rando(nouns);
   }
-}
-
-
+}*/
 
 export default class Blog extends Component {
 
-  getInitialState() {
-    return {
-      posts : {}
-    }
+  constructor(props) {
+      super(props);
+      this.state = {
+        posts : {}
+      };
+    this.addPost = this.addPost.bind(this);
+    this.renderPost = this.renderPost.bind(this);
   }
 
   addPost(post) {
     var timestamp = (new Date()).getTime();
     // update the state object
+    console.log(timestamp);
     this.state.posts['post-' + timestamp] = post;
     // set the state
     this.setState({ posts : this.state.posts });
@@ -48,7 +51,6 @@ export default class Blog extends Component {
   renderPost(key){
     return <NewPost key={key} index={key} details={this.state.posts[key]} />
   }
-
 
   render() {
     var imgOne = "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Balaton_Hungary_Landscape.jpg/1024px-Balaton_Hungary_Landscape.jpg";
@@ -88,8 +90,15 @@ export default class Blog extends Component {
 
 class AddPostForm extends Component {
 
+  constructor(props) {
+      super(props);
+      this.createPost = this.createPost.bind(this);
+      
+  };
+
   createPost(event) {
     event.preventDefault();
+
     // take the data from the form and create an object
     var post = {
       title : this.refs.title.value,
@@ -97,7 +106,8 @@ class AddPostForm extends Component {
       desc : this.refs.desc.value,
       image : this.refs.image.value
     }
-    // add the post to the App State
+
+    // add the post to the Blog State
     this.props.addPost(post);
     this.refs.postForm.reset();
   }
@@ -119,7 +129,7 @@ class AddPostForm extends Component {
             placeholder="Write your post here" required/>
           </label>
           <label>Image URL - <span className="highlight">use this one to test 'http://bit.ly/1P9prpc'</span>
-            <input type="url" ref="image" placeholder="The URL of the featured image for your post" required/>
+            <input type="url" ref="image" placeholder="The URL of the featured image for your post"/>
           </label>
           <button type="submit" class="button">Add Post</button>
         </form>
@@ -127,6 +137,25 @@ class AddPostForm extends Component {
     )
   }
 
+};
+
+class Nav extends Component {
+  
+  render() {
+    return (
+      <div className="top-bar">
+        <div className="top-bar-left">
+          <ul className="menu">
+            <li className="menu-text">React Blog</li>
+            <li><a href="#">One</a></li>
+            <li><a href="#">Two</a></li>
+            <li><a href="#">Three</a></li>
+          </ul>
+        </div>
+      </div>
+    )
+  }
+  
 };
 
 class Banner extends Component {
@@ -164,11 +193,30 @@ class Post extends Component {
           <ul className="menu simple">
           <li><a href="#" onClick={this.tryClick}>Author: {this.props.author}</a></li>
           <li><a href="#">{com}: {this.props.comments}</a></li>
-          <li><a href="#">Tags: {h.getTaggedName()}</a></li>
+          <li><a href="#">Tags: </a></li>
           </ul>
         </div>
       </div>
     )
   }
   
+};
+
+class NewPost extends Component{
+  render() {
+    var details = this.props.details;
+    return (
+      <div className="blog-post">
+        <h3 className="ptitle">{details.title}<small></small></h3>
+        <img className="thumbnail" src={details.image} alt={details.name}/>
+        <p>{details.desc}</p>
+        <div className="callout callout-post">
+          <ul className="menu simple">
+          <li><a href="#">Author: {details.name}</a></li>
+          <li><a href="#">Comments: 0</a></li>
+          </ul>
+        </div>
+      </div>
+    )
+  }
 };
