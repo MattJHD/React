@@ -7,8 +7,8 @@ export default class Dashboard extends Component {
     return (
       <div>
         <Header/>
-        <div id="grid_page" class="grid-page">
-          <h1 class="title">Dashboard</h1>
+        <div id="grid_page" className="grid-page">
+          <h1 className="title">Dashboard</h1>
         </div>
         <Footer/>
       </div>

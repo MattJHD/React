@@ -3,7 +3,7 @@ import React, {Component} from 'react';
 import Header from '../views/header.js';
 import Footer from '../views/footer.js';
 import ReactDOM from "react-dom";
-import axios from 'axios';
+//import axios from 'axios';
 
 function handleContact(evt) {
     console.log(evt);
@@ -44,39 +44,41 @@ class Contact extends Component {
     handleSubmit(event) {
         alert('A name was submitted: ' + this.state.name + ' email: ' + this.state.email + ' message: ' + this.state.message );
         event.preventDefault();
-        axios.post(
-            '/contact',{
-                name: this.state.name,
-                email: this.state.email,
-                message: this.state.message
-            },
-            'json')
-            .then(function(data) {
-                console.log(data);
-            })
-            .catch(function(xhr, status, err) {
-                console.error(status, err.toString());
-            });
+        
+        var sendTo = this.state.email;
+        var sub = this.state.name;
+        var message = this.state.message;
+        var data = {
+        from: '"Matthieu" <matthieudurand.graphisme@gmail.com>',
+        to: sendTo,
+        subject: sub,
+        text: message,
+        html: '<b>'+message+'</b>'
+        };
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "http://localhost:80/sendMail", true);
+        xhr.setRequestHeader("Content-type", "application/json");
+        xhr.send(JSON.stringify(data));
     }
 
     render() {
         return (
             <div name="Sara">
                 <Header/>
-                <div id="grid_page" class="grid-page">
-                    <h1 class="title">Contact</h1>
+                <div id="grid_page" className="grid-page">
+                    <h1 className="title">Contact</h1>
                     <form onSubmit={this.handleSubmit}>
-                        <div class="row">
-                            <label class="label">votre nom *</label>
-                            <input id="" name="name" class="block" value={this.state.name} onChange={this.handleChange}/>
+                        <div className="row">
+                            <label className="label">votre nom *</label>
+                            <input id="" name="name" className="block" value={this.state.name} onChange={this.handleChange}/>
                         </div>
-                        <div class="row">
-                            <label class="label">votre email *</label>
-                            <input id="" name="email" class="block" value={this.state.email} onChange={this.handleChange}/>
+                        <div className="row">
+                            <label className="label">votre email *</label>
+                            <input id="" name="email" className="block" value={this.state.email} onChange={this.handleChange}/>
                         </div>
-                        <div class="row">
-                            <label class="label">votre message *</label>
-                            <textarea name="message" class="block" value={this.state.message} onChange={this.handleChange}></textarea>
+                        <div className="row">
+                            <label className="label">votre message *</label>
+                            <textarea name="message" className="block" value={this.state.message} onChange={this.handleChange}></textarea>
                         </div>
                         <input type="submit" value="contact us !" id="btn_contact"/> {/* <input type="submit" value="contact us !" id="btn_contact" onClick={this.handle.bind(this)}/> */}
                     </form>

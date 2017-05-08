@@ -47,10 +47,9 @@ body {
   flex-direction: column;
 }
 
-.block {
-    display: block;
+.title {
+  margin: 20px 0 10px;
 }
-
 /////////////////
 .grid-app {
   max-width: 1280px;
@@ -76,10 +75,6 @@ body {
   border-top: 1px solid $border;
 }
 /////////////////
-.title {
-  margin: 20px 0 10px;
-}
-
 .logo {
   max-width: 80px;
 }
@@ -106,4 +101,28 @@ a.active, a:hover,
   flex: 0 0 20%;
   max-width: 195px;
   text-align: right;
+}
+
+.form{
+  width: 80%;
+  margin:auto;
+
+}
+
+.form input, .form textarea{
+  width: 100%;
+  float: left;
+  margin:10px;
+  min-height: 30px;
+}
+
+.form label{
+  width: 100%;
+  float: left;
+  margin-left: 10px;
+}
+
+.form input[type='submit']{
+  width: 20%;
+  margin-left: 10px;
 }

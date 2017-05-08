@@ -9,8 +9,8 @@ export default class Home extends Component {
     return (
       <div>
         <Header/>
-        <div id="grid_page" class="grid-page">
-          <h1 class="title">Home</h1>
+        <div id="grid_page" className="grid-page">
+          <h1 className="title">Home</h1>
           <RessourcesTD/>
           <ToDo/>
         </div>

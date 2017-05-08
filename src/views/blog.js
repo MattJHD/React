@@ -2,31 +2,36 @@ import React, {Component} from 'react';
 import Header from '../views/header.js';
 import Footer from '../views/footer.js';
 
-//helper functions
-/*function h() {
-  function rando(arr) {
-    return arr[Math.floor(Math.random() * arr.length)];
-  }
+const req = new XMLHttpRequest();
+var articles = null;
 
-  function getTime() {
-      var month = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-      var d = new Date();
-      var mon = month[d.getMonth()];
-      var day = d.getDate();
-      var year = d.getFullYear();
-      var dateAll = mon + " " + day + ", " + year;
-    
-      return dateAll;
+req.onreadystatechange = function(event) {
+  if (this.readyState === XMLHttpRequest.DONE) {
+    if (this.status === 200) {
+      var res = JSON.parse(this.responseText);
+      console.log(res);
+      articles = res;
+    } else {
+      console.log("Status de la réponse: %d (%s)", this.status, this.statusText);
+    }
   }
+};
 
-  function getTaggedName() {
-    var adjectives = ['trusted', 'secure', 'hot', 'new', 'interesting', 'best practice', 'exciting'];
-    
-    var nouns = ['es6', 'browserify', 'webpack', 'gulp', 'reactDOM', 'devTools'];
-    
-    return this.rando(adjectives) + ' ' + this.rando(nouns);
-  }
-}*/
+req.open('GET', 'http://localhost:3001/articles', true);
+req.send(null);
+
+function getArticles(props) {
+  const listItems = props.map((article) =>
+    <li>
+      <h1>{article.title}</h1><p>{article.content}</p>
+    </li>
+  );
+  return (
+    <ul>{listItems}</ul>
+  );
+}
+
+// =============================================================================
 
 export default class Blog extends Component {
 
@@ -88,6 +93,8 @@ export default class Blog extends Component {
 
 };
 
+// =============================================================================
+
 class AddPostForm extends Component {
 
   constructor(props) {
@@ -139,6 +146,8 @@ class AddPostForm extends Component {
 
 };
 
+// =============================================================================
+
 class Nav extends Component {
   
   render() {
@@ -158,6 +167,8 @@ class Nav extends Component {
   
 };
 
+// =============================================================================
+
 class Banner extends Component {
 
   render() {
@@ -175,6 +186,8 @@ class Banner extends Component {
     )
   }
 };
+
+// =============================================================================
 
 class Post extends Component {
 
@@ -202,6 +215,8 @@ class Post extends Component {
   
 };
 
+// =============================================================================
+
 class NewPost extends Component{
   render() {
     var details = this.props.details;
@@ -220,3 +235,27 @@ class NewPost extends Component{
     )
   }
 };
+
+//helper functions
+/*function h() {
+  function rando(arr) {
+    return arr[Math.floor(Math.random() * arr.length)];
+  }
+
+  function getTime() {
+      var month = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+      var d = new Date();
+      var mon = month[d.getMonth()];
+      var day = d.getDate();
+      var year = d.getFullYear();
+      var dateAll = mon + " " + day + ", " + year;
+    
+      return dateAll;
+  }
+
+  function getTaggedName() {
+    var adjectives = ['trusted', 'secure', 'hot', 'new', 'interesting', 'best practice', 'exciting'];    
+    var nouns = ['es6', 'browserify', 'webpack', 'gulp', 'reactDOM', 'devTools'];    
+    return this.rando(adjectives) + ' ' + this.rando(nouns);
+  }
+}*/

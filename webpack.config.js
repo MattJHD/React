@@ -49,6 +49,13 @@ module.exports = {
   },
   module: {
     rules: [
+      { 
+        test: /\.css$/, 
+        loader: "style-loader!css-loader" 
+      },
+      { test: /\.(woff|woff2|eot|ttf)$/, 
+        loader: 'url-loader?limit=100000'
+      },
       {
         test: /\.scss$/,
         use: cssConfig
