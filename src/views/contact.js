@@ -32,11 +32,11 @@ class Contact extends Component {
         // console.log(this);
         const name = evt.target.name;
         // const name = evt.target.name;
-      console.log(evt.target.value);
+                console.log(evt.target.value);
         this.setState({
           [name]: evt.target.value
         });
-      console.log(this.state);
+                console.log(this.state);
         // console.log(this.state[field]);
         // console.log(this.state.field);
     }
@@ -67,7 +67,7 @@ class Contact extends Component {
                 <Header/>
                 <div id="grid_page" className="grid-page">
                     <h1 className="title">Contact</h1>
-                    <form onSubmit={this.handleSubmit}>
+                    <form onSubmit={this.handleSubmit} className="form">
                         <div className="row">
                             <label className="label">votre nom *</label>
                             <input id="" name="name" className="block" value={this.state.name} onChange={this.handleChange}/>
@@ -78,7 +78,7 @@ class Contact extends Component {
                         </div>
                         <div className="row">
                             <label className="label">votre message *</label>
-                            <textarea name="message" className="block" value={this.state.message} onChange={this.handleChange}></textarea>
+                            <textarea name="message" rows="20" className="block" value={this.state.message} onChange={this.handleChange}></textarea>
                         </div>
                         <input type="submit" value="contact us !" id="btn_contact"/> {/* <input type="submit" value="contact us !" id="btn_contact" onClick={this.handle.bind(this)}/> */}
                     </form>
