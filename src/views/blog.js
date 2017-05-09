@@ -67,11 +67,11 @@ export default class Blog extends Component {
     return (
       <div>
         <Header/>
-        <div id="grid_page" class="grid-page">
+        <div id="grid_page" className="grid-page">
 
           <Banner />
 
-          <h1 class="title">Blog</h1>
+          <h1 className="title">Blog</h1>
 
           <Post ptitle="Flux flack" pimg={imgOne} date="Nov 2, 2015" postbody={dummyPost} author="Fred Armisen" comments="2" tags=""/>
           <Post ptitle="Inline Styles Aren't Necessary" pimg={imgTwo} postbody={dummyPost} date="Aug 15, 2015" author="Amy Schumer" comments="5"/>
@@ -138,7 +138,7 @@ class AddPostForm extends Component {
           <label>Image URL - <span className="highlight">use this one to test 'http://bit.ly/1P9prpc'</span>
             <input type="url" ref="image" placeholder="The URL of the featured image for your post"/>
           </label>
-          <button type="submit" class="button">Add Post</button>
+          <button type="submit" className="button">Add Post</button>
         </form>
       </div>
     )

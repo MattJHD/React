@@ -5,19 +5,19 @@ import {NavLink} from 'react-router-dom';
 export default class Menu extends Component {
   render() {
     return (
-      <nav id="grid_nav" class="nav main">
-        <ul class="list">
-          <li class="item">
-            <NavLink exact={true} to="/" class="link">home</NavLink>
+      <nav id="grid_nav" className="nav main">
+        <ul className="list">
+          <li className="item">
+            <NavLink exact={true} to="/" className="link">home</NavLink>
           </li>
-          <li class="item">
-            <NavLink to="/blog" class="link">blog</NavLink>
+          <li className="item">
+            <NavLink to="/blog" className="link">blog</NavLink>
           </li>
-          <li class="item">
-            <NavLink to="/contact" class="link">contact</NavLink>
+          <li className="item">
+            <NavLink to="/contact" className="link">contact</NavLink>
           </li>
-          <li class="item">
-            <NavLink to="/dashboard" class="link">dashboard</NavLink>
+          <li className="item">
+            <NavLink to="/dashboard" className="link">dashboard</NavLink>
           </li>
         </ul>
       </nav>

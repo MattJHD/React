@@ -4,8 +4,8 @@ export default class toDo extends Component {
   render() {
     return (
     	<div>
-    	<h3 class="title">To Do</h3>
-	      <ul class="list">
+    	<h3 className="title">To Do</h3>
+	      <ul className="list">
 	      	<li>modifier la view contact (html/css)</li>
 	      	<li>configurer node pour envoyer des mails</li>
 	      	<li>connecter un serveur mysql</li>
